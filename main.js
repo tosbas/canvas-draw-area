@@ -33,7 +33,7 @@
 
     // Fin de dessin
 
-    function endPosition() {
+    function endPosition(e) {
         painting = false;
         ctx.beginPath();
     }
@@ -65,6 +65,9 @@
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 40);
+
     }
 
     document.addEventListener("touchmove", drawMobile)
+
+    document.addEventListener("touchend", endPosition)
