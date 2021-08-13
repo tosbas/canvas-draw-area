@@ -20,8 +20,22 @@ canvas {
     background-color: white;
 }
 
-#reset {
-    margin: auto;
-    display: block;
+#reset,
+#penSize {
     padding: 3px;
+    margin: 0 10px 3px 10px;
+}
+
+p {
+    padding: 3px;
+}
+
+#penSize {
+    width: 50px;
+    outline: none;
+}
+
+div {
+    display: flex;
+    justify-content: center;
 }

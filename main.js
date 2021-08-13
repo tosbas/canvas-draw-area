@@ -1,9 +1,12 @@
     const canvas = document.querySelector('canvas');
     const ctx = canvas.getContext('2d');
     const reset = document.getElementById('reset');
+    const penSize = document.getElementById("penSize");
+    const errorText = document.createElement("p");
 
     canvas.width = window.innerWidth - 10;
     canvas.height = window.innerHeight - 70;
+
 
     // resize automatique
 
@@ -12,6 +15,8 @@
         canvas.height = window.innerHeight - 70;
     })
 
+    let paintingIsPresent = false;
+
     let painting = false;
 
     function startPosition(e) {
@@ -19,40 +24,69 @@
         draw(e)
     }
 
+
     // dessiner
 
     function draw(e) {
         if (painting == false) return;
 
-        ctx.lineWidth = 5;
+        paintingIsPresent = true;
+
+        ctx.lineWidth = penSize.value;
         ctx.lineCap = "round";
-        ctx.lineTo(e.clientX - 5, e.clientY - 60);
+        ctx.lineTo(e.clientX - 5, e.clientY - 65);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX - 5, e.clientY - 60);
+        ctx.moveTo(e.clientX - 5, e.clientY - 65);
     }
 
     // Fin de dessin
 
     function endPosition(e) {
         painting = false;
+        changePenSize = false;
         ctx.beginPath();
     }
 
     // Nettoyer la zone
 
     function clear() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        if (paintingIsPresent && !changePenSize) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+        }
 
     }
 
+    let changePenSize = false;
+
     // Evenements
+
+    penSize.addEventListener("click", () => {
+        changePenSize = true;
+    })
+
+    penSize.addEventListener("input", () => {
+
+        if (penSize.value > 60) {
+
+            document.querySelector("div").appendChild(errorText);
+            errorText.innerText = "Trop grand, maximum 60 !";
+            penSize.value = 5;
+
+            setTimeout(() => {
+                document.querySelector("div").removeChild(errorText);
+            }, 1000)
+
+        }
+
+    })
 
     document.addEventListener("keydown", clear)
 
-    document.addEventListener("mousedown", startPosition)
+    canvas.addEventListener("mousedown", startPosition)
 
-    document.addEventListener("mousemove", draw)
+    canvas.addEventListener("mousemove", draw)
 
     document.addEventListener("mouseup", endPosition)
 
@@ -62,12 +96,14 @@
 
     function drawMobile(e) {
 
-        ctx.lineWidth = 3;
+        paintingIsPresent = true;
+
+        ctx.lineWidth = penSize.value;
         ctx.lineCap = "round";
-        ctx.lineTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 60);
+        ctx.lineTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 60);
+        ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
 
     }
 
