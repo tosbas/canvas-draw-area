@@ -32,12 +32,17 @@
 
         paintingIsPresent = true;
 
-        ctx.lineWidth = penSize.value;
-        ctx.lineCap = "round";
-        ctx.lineTo(e.clientX - 5, e.clientY - 65);
-        ctx.stroke();
+        // ctx.lineWidth = penSize.value;
         ctx.beginPath();
-        ctx.moveTo(e.clientX - 5, e.clientY - 65);
+        ctx.fillStyle = "black";
+        ctx.arc(e.clientX - 5, e.clientY - 65, penSize.value, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fill();
+        // ctx.lineCap = "round";
+        // ctx.lineTo(e.clientX - 5, e.clientY - 65);
+        // ctx.stroke();
+        // ctx.beginPath();
+        // ctx.moveTo(e.clientX - 5, e.clientY - 65);
     }
 
     // Fin de dessin
@@ -71,13 +76,11 @@
         if (penSize.value > 60) {
 
             document.querySelector("div").appendChild(errorText);
-            errorText.innerText = "Trop grand, maximum 60 !";
-            penSize.value = 5;
+            errorText.innerText = "Maximum 60 !";
+            penSize.value = 60;
 
-            setTimeout(() => {
-                document.querySelector("div").removeChild(errorText);
-            }, 1000)
-
+        } else if (penSize.value < 60) {
+            document.querySelector("div").removeChild(errorText);
         }
 
     })
@@ -98,12 +101,18 @@
 
         paintingIsPresent = true;
 
-        ctx.lineWidth = penSize.value;
-        ctx.lineCap = "round";
-        ctx.lineTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
-        ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
+        ctx.fillStyle = "black";
+        ctx.arc(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65, penSize.value, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fill();
+
+        // ctx.lineWidth = penSize.value;
+        // ctx.lineCap = "round";
+        // ctx.lineTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
+        // ctx.stroke();
+        // ctx.beginPath();
+        // ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
 
     }
 
