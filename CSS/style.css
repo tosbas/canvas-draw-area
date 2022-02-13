@@ -45,11 +45,18 @@ div {
 }
 
 #colorSelect {
-    position: absolute;
-    bottom: 0vh;
-    width: 100vw;
     background-color: chocolate;
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
+
+#colorSelect>div {
+    display: flex;
+    align-items: center;
+}
+
+#color {
+    padding: 5px;
+    font-size: 16px;
 }

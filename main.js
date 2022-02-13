@@ -35,11 +35,11 @@
 
         ctx.lineWidth = penSize.value;
         ctx.lineCap = "round";
-        ctx.lineTo(e.clientX - 5, e.clientY - 65);
+        ctx.lineTo(e.clientX - 5, e.clientY - 120);
         ctx.strokeStyle = color.value;
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX - 5, e.clientY - 65);
+        ctx.moveTo(e.clientX - 5, e.clientY - 120);
     }
 
     // Fin de dessin
@@ -98,11 +98,11 @@
 
         ctx.lineWidth = penSize.value;
         ctx.lineCap = "round";
-        ctx.lineTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
+        ctx.lineTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 120);
         ctx.strokeStyle = color.value;
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 65);
+        ctx.moveTo(e.changedTouches[0].clientX - 5, e.changedTouches[0].clientY - 120);
 
     }
 
