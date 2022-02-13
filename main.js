@@ -4,6 +4,7 @@
     const penSize = document.getElementById("penSize");
     const errorText = document.createElement("p");
     const color = document.getElementById("color");
+    const backgroundColor = document.getElementById("backgroundColor");
 
     canvas.width = window.innerWidth - 10;
     canvas.height = window.innerHeight - 128;
@@ -24,6 +25,10 @@
         painting = true;
         draw(e)
     }
+
+    backgroundColor.addEventListener("change", () => {
+        canvas.style.backgroundColor = backgroundColor.value;
+    })
 
 
     // dessiner
